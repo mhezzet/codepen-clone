@@ -1,26 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { Bundler } from './bundler'
 
-function App() {
+export const App = () => {
+  const [input, setInput] = useState('')
+  const [code, setCode] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <div>
+      <Bundler code={input} onBuild={setCode} />
+      <textarea value={input} onChange={e => setInput(e.target.value)} />
 
-export default App;
+      <pre>{code}</pre>
+    </div>
+  )
+}
