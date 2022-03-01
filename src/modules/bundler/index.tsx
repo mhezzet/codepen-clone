@@ -1,17 +1,22 @@
 import * as esbuild from 'esbuild-wasm'
-import React, { memo, useCallback, useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { isEsbuildInitState } from '../store/bundler'
+import { memo, useCallback, useEffect } from 'react'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import {
+  bundledCodeErrorsState,
+  bundledCodeState,
+  bundledCodeWarningsState,
+  codeState,
+  isEsbuildInitState,
+} from '../../store/bundler'
 import { fetchPlugin } from './plugins/fetch-plugin'
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin'
 
-type Props = {
-  code: string
-  onBuild: Function
-}
-
-export const Bundler: React.FC<Props> = memo(({ code, onBuild }) => {
+export const Bundler = memo(() => {
   const [isEsbuildInit, setIsEsbuildInit] = useRecoilState(isEsbuildInitState)
+  const code = useRecoilValue(codeState)
+  const setBundledCode = useSetRecoilState(bundledCodeState)
+  const setBundledErrosCode = useSetRecoilState(bundledCodeErrorsState)
+  const setBundledWarningsCode = useSetRecoilState(bundledCodeWarningsState)
 
   const initializeEsbuild = useCallback(async () => {
     await esbuild.initialize({
@@ -34,15 +39,23 @@ export const Bundler: React.FC<Props> = memo(({ code, onBuild }) => {
       write: false,
       plugins: [unpkgPathPlugin(), fetchPlugin(code)],
       define: {
-        'process.env.NODE_ENV': 'production',
+        'process.env.NODE_ENV': '"production"',
         global: 'Window',
       },
     })
 
-    console.log('result', result)
+    console.log(result)
 
-    onBuild(result.outputFiles[0].text)
-  }, [code, isEsbuildInit, onBuild])
+    setBundledCode(result.outputFiles[0].text)
+    setBundledErrosCode(result.errors)
+    setBundledWarningsCode(result.warnings)
+  }, [
+    code,
+    isEsbuildInit,
+    setBundledCode,
+    setBundledErrosCode,
+    setBundledWarningsCode,
+  ])
 
   useEffect(() => {
     buildCode()

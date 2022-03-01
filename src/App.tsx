@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import { Bundler } from './bundler'
+import { Bundler } from './modules/bundler'
+import { Editor } from './modules/editor'
+import { Preview } from './modules/preview'
 
 export const App = () => {
-  const [input, setInput] = useState('')
-  const [code, setCode] = useState('')
-
   return (
     <div>
-      <Bundler code={input} onBuild={setCode} />
-      <textarea value={input} onChange={e => setInput(e.target.value)} />
-
-      <pre>{code}</pre>
+      <Bundler />
+      <Editor />
+      <Preview />
     </div>
   )
 }
