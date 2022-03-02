@@ -1,5 +1,6 @@
 import * as esbuild from 'esbuild-wasm'
 import { atom } from 'recoil'
+import { initialCode } from '../constants'
 
 export const isEsbuildInitState = atom({
   key: 'isEsbuildInit',
@@ -8,7 +9,7 @@ export const isEsbuildInitState = atom({
 
 export const codeState = atom({
   key: 'code',
-  default: '',
+  default: initialCode,
 })
 
 export const bundledCodeState = atom({

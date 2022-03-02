@@ -44,8 +44,6 @@ export const Bundler = memo(() => {
       },
     })
 
-    console.log(result)
-
     setBundledCode(result.outputFiles[0].text)
     setBundledErrosCode(result.errors)
     setBundledWarningsCode(result.warnings)

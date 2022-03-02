@@ -4,7 +4,7 @@ import { Preview } from './modules/preview'
 
 export const App = () => {
   return (
-    <div>
+    <div className='app'>
       <Bundler />
       <Editor />
       <Preview />

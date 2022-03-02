@@ -1,0 +1,41 @@
+@import '~normalize.css/normalize.css';
+@import '~bulmaswatch/superhero/bulmaswatch.min.css';
+
+html,
+body,
+#root {
+  height: 100%;
+  background-color: white;
+}
+
+.app {
+  height: 100%;
+  display: flex;
+}
+
+.editor {
+  height: 100%;
+  flex-basis: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview {
+  border: none;
+  height: 100%;
+  flex-basis: 50%;
+  overflow: hidden;
+}
+
+.editor .button-format {
+  position: absolute;
+  top: 5px;
+  right: 17px;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.editor:hover .button-format {
+  opacity: 1;
+}

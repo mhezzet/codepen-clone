@@ -3,22 +3,40 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/parser": "^7.17.3",
+    "@babel/traverse": "^7.17.3",
+    "@monaco-editor/react": "^4.3.1",
+    "@types/jscodeshift": "^0.11.3",
     "@types/node": "^16.11.25",
+    "@types/prettier": "^2.4.4",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "@types/react-resizable": "^1.7.4",
+    "assert": "^2.0.0",
     "axios": "^0.26.0",
+    "buffer": "^6.0.3",
+    "bulmaswatch": "^0.8.1",
     "esbuild-wasm": "^0.14.23",
+    "jscodeshift": "^0.13.1",
     "localforage": "^1.10.0",
+    "monaco-editor": "^0.32.1",
+    "monaco-jsx-highlighter": "^2.0.4",
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.5.1",
+    "process": "^0.11.10",
     "react": "^17.0.2",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^17.0.2",
+    "react-resizable": "^3.0.4",
     "react-scripts": "5.0.0",
     "recoil": "^0.6.1",
+    "stream-browserify": "^3.0.0",
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "debug": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": [
